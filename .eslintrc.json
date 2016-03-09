@@ -1,0 +1,22 @@
+{
+    "extends": "airbnb/legacy",
+    "parserOptions": {
+        "ecmaVersion": 5
+    },
+    "plugins": [],
+    "rules": {
+        "strict": [2, "global"],
+        "indent": [2, 2],
+        "quotes": [2, "single"],
+        "semi": [2, "always"],
+        "no-unused-vars": [1, {
+            "vars": "local",
+            "args": "none"
+        }],
+        "no-console": 1,
+        "comma-dangle": 1
+    },
+    "env": {
+        "browser": true
+    }
+}
