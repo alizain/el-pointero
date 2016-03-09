@@ -20,6 +20,14 @@
 
   'use strict';
 
+  /**
+   * Sniffer constructor
+   * @param {HTMLElement} container  The parent container for all nodes to parse
+   * @param {Array} [allowElements=undefined]  An array of HTML element tags to include when searching. No elements except for the direct parent of text nodes are included in the search by default
+   * @param {Boolean} [allowText=true]  By default, text nodes are included in the search
+   * @param {Integer} [resolution=1]  How accurately should element positions be recorded. Helps to increase this value if the page is really long and maximum memory efficiency is required
+   * @returns {Sniffer} Sniffer  the newly created Sniffer object
+   */
   function Sniffer(container, allowElements, allowText, resolution) {
     if (!(container instanceof HTMLElement)) {
       throw new Error('A container element must be provided');
@@ -42,10 +50,18 @@
     var containerState = this.getContainerState();
     this.arrays = {};
     if (this.allowText) {
-      this.arrays = this.newArrays(containerState, this.createTextWalker(this.container), this.arrays);
+      this.arrays = this.newArrays(
+        containerState,
+        this.createTextWalker(this.container),
+        this.arrays
+      );
     }
     if (this.allowElements) {
-      this.arrays = this.newArrays(containerState, this.createElementWalker(this.container, this.allowElements), this.arrays);
+      this.arrays = this.newArrays(
+        containerState,
+        this.createElementWalker(this.container, this.allowElements),
+        this.arrays
+      );
     }
     this.arrays.pos.forEach(function sortInPlaceIfArray(arr) {
       if (Array.isArray(arr)) {

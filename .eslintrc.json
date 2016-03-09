@@ -20,7 +20,8 @@
             "allowSingleLine": true
         }],
         "max-len": 0,
-        "no-cond-assign": [2, "except-parens"]
+        "no-cond-assign": [2, "except-parens"],
+        "valid-jsdoc": 2
     },
     "env": {
         "browser": true
