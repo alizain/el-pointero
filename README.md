@@ -4,8 +4,12 @@ Find elements in the DOM that are at a specific position on the page.
 ```javascript
 // initialize the library
 var sniffer = new Sniffer(document.getElementById('article'));
+```
+```javascript
 // find which elements are at the 1000px mark
 sniffer.sniff(1000);
+```
+```javascript
 // find which elements are at the top of the screen
 sniffer.sniff(scrollY);
 ```
