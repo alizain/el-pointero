@@ -1,0 +1,22 @@
+{
+  "name": "sniffer",
+  "description": "find elements using Y-coordinate",
+  "main": "index.js",
+  "authors": [
+    "Alizain Feerasta"
+  ],
+  "license": "MIT",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
