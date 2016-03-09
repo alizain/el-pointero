@@ -1,5 +1,5 @@
 {
-  "name": "sniffer",
+  "name": "sniffer.js",
   "description": "find elements using Y-coordinate",
   "main": "index.js",
   "authors": [
