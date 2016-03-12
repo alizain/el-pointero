@@ -1,18 +1,19 @@
 {
-  "name": "sniffer.js",
+  "name": "el-pointero",
   "version": "0.1.0",
   "description": "find elements using Y-coordinate",
   "main": "index.js",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github:alizain/sniffer.git"
+    "url": "git@github:alizain/el-pointero.git"
   },
   "author": "Alizain Feerasta",
   "license": "MIT"

@@ -1,28 +1,26 @@
-# Sniffer.js
-Find elements in the DOM that are at a specific position on the page.
+# El Pointero
+Find DOM elements using Y-coordinates (points).
 
 ```javascript
 // initialize the library
-var sniffer = new Sniffer(document.getElementById('article'));
-```
-```javascript
+var elp = new ElPointero(document.getElementById('article'));
+
 // find which elements are at the 1000px mark
-sniffer.sniff(1000);
-```
-```javascript
+elp.findAt(1000);
+
 // find which elements are at the top of the screen
-sniffer.sniff(scrollY);
+elp.findAt(scrollY);
 ```
 
 ## Installation
 ### NPM
 
 ```shell
-npm install --save sniffer.js
+npm install --save el-pointero
 ```
 
 ### Bower
 
 ```shell
-bower install --save sniffer.js
+bower install --save el-pointero
 ```

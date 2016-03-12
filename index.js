@@ -4,14 +4,14 @@
 
   /* eslint-disable */
 
-  if (typeof define === 'function' && define.amd) { // eslint-disable-line
+  if (typeof define === 'function' && define.amd) {
     define([], factory);
   }
   else if (typeof module === 'object' && module.exports) {
     module.exports = factory();
   }
   else {
-    root.Sniffer = factory();
+    root.ElPointero = factory();
   }
 
   /* eslint-enable */
@@ -21,14 +21,14 @@
   'use strict';
 
   /**
-   * Sniffer constructor
+   * ElPointero constructor
    * @param {HTMLElement} container  The parent container for all nodes to parse
    * @param {Array} [allowElements=undefined]  An array of HTML element tags to include when searching. No elements except for the direct parent of text nodes are included in the search by default
    * @param {Boolean} [allowText=true]  By default, text nodes are included in the search
    * @param {Integer} [resolution=1]  How accurately should element positions be recorded. Helps to increase this value if the page is really long and maximum memory efficiency is required
-   * @returns {Sniffer} Sniffer  the newly created Sniffer object
+   * @returns {ElPointero} ElPointero  the newly created ElPointero object
    */
-  function Sniffer(container, allowElements, allowText, resolution) {
+  function ElPointero(container, allowElements, allowText, resolution) {
     if (!(container instanceof HTMLElement)) {
       throw new Error('A container element must be provided');
     }
@@ -46,7 +46,7 @@
     return this;
   }
 
-  Sniffer.prototype.updateArrays = function updateArrays() {
+  ElPointero.prototype.updateArrays = function updateArrays() {
     var containerState = this.getContainerState();
     this.arrays = {};
     if (this.allowText) {
@@ -70,22 +70,22 @@
     }, this);
   };
 
-  Sniffer.prototype.getContainerState = function getContainerState() {
+  ElPointero.prototype.getContainerState = function getContainerState() {
     return this.container.getBoundingClientRect();
   };
 
-  Sniffer.prototype.getDocumentState = function getDocumentState() {
+  ElPointero.prototype.getDocumentState = function getDocumentState() {
     return document.documentElement.getBoundingClientRect();
   };
 
-  Sniffer.prototype.getWindowState = function getWindowState() {
+  ElPointero.prototype.getWindowState = function getWindowState() {
     return {
       height: window.innerHeight || document.documentElement.clientHeight,
       width: window.innerWidth || document.documentElement.clientWidth
     };
   };
 
-  Sniffer.prototype.createTextWalker = function createTextWalker(container) {
+  ElPointero.prototype.createTextWalker = function createTextWalker(container) {
     return document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
       acceptNode: function acceptNode(node) {
         if (!/^\s*$/.test(node.textContent)) {
@@ -96,7 +96,7 @@
     }, false);
   };
 
-  Sniffer.prototype.createElementWalker = function createElementWalker(container, a) {
+  ElPointero.prototype.createElementWalker = function createElementWalker(container, a) {
     var allowed = a.map(function elToUpperCase(el) {
       return el.toUpperCase();
     });
@@ -110,7 +110,7 @@
     }, false);
   };
 
-  Sniffer.prototype.sortArrayOfNodes = function sortArrayOfNodes(arr) {
+  ElPointero.prototype.sortArrayOfNodes = function sortArrayOfNodes(arr) {
     if (arr.length > 1) {
       arr.sort(function compareNodes(a, b) {
         var aRect = this.arrays.rect[this.arrays.node.indexOf(a)];
@@ -126,7 +126,7 @@
     }
   };
 
-  Sniffer.prototype.newArrays = function newArrays(container, walker, existing) {
+  ElPointero.prototype.newArrays = function newArrays(container, walker, existing) {
     var posArrLen;
     var posArr;
     var nodeArr;
@@ -183,7 +183,7 @@
     return { pos: posArr, node: nodeArr, rect: rectArr };
   };
 
-  Sniffer.prototype.sniff = function sniff(position, max) {
+  ElPointero.prototype.findAt = function sniff(position, max) {
     var posToFind;
     var maxIter;
     var maxPos;
@@ -216,5 +216,7 @@
     }
     return curr;
   };
+
+  return ElPointero;
 
 }));
