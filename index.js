@@ -165,20 +165,22 @@
       }
       start = Math.max(Math.round((rect.top - container.top) / this.resolution), 0);
       end = Math.min(Math.round((rect.bottom - container.top) / this.resolution), posArrLen - 1);
-      if (start < end) {
-        for (start; start <= end; start++) {
-          if (Array.isArray(posArr[start])) {
-            if (posArr[start].indexOf(node) === -1) {
-              posArr[start].push(node);
-            }
-          }
-          else {
-            posArr[start] = [node];
+      if (start >= end) {
+        // we won't make a record of nodes that don't take up any space
+        continue;
+      }
+      for (start; start <= end; start++) {
+        if (Array.isArray(posArr[start])) {
+          if (posArr[start].indexOf(node) === -1) {
+            posArr[start].push(node);
           }
         }
-        nodeArr.push(node);
-        rectArr.push(rect);
+        else {
+          posArr[start] = [node];
+        }
       }
+      rectArr.push(rect);
+      nodeArr.push(node);
     }
     return { pos: posArr, node: nodeArr, rect: rectArr };
   };
@@ -200,21 +202,21 @@
     maxPos = this.arrays.pos.length - 1;
     minPos = 0;
     curr = this.arrays.pos[posToFind];
-    if (curr === undefined) {
+    if (!Array.isArray(curr)) {
       iter = 1;
-      while (curr === undefined && iter <= maxIter) {
+      while (!Array.isArray(curr) && iter <= maxIter) {
         curr = this.arrays.pos[Math.min(posToFind + iter, maxPos)];
-        if (curr !== undefined) {
+        if (Array.isArray(curr)) {
           break;
         }
         curr = this.arrays.pos[Math.max(posToFind - iter, minPos)];
-        if (curr !== undefined) {
+        if (Array.isArray(curr)) {
           break;
         }
         iter += 1;
       }
     }
-    return curr;
+    return curr.slice();
   };
 
   return ElPointero;
