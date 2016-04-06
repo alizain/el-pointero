@@ -9,7 +9,7 @@
     "eslint-config-airbnb": "^6.1.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "http-server ."
   },
   "repository": {
     "type": "git",
