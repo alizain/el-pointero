@@ -18,5 +18,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "lodash": "^4.8.2",
+    "benchmark": "^2.1.0",
+    "jquery": "^2.2.3"
+  }
 }
